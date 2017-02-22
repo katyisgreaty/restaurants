@@ -21,6 +21,28 @@ namespace RestaurantList
             Assert.Equal(0, result);
         }
 
+        [Fact]
+        public void Equals_ReturnsTrueForSameName_true()
+        {
+            //Arrange, Act
+           Cuisine firstCuisine = new Cuisine("Dog");
+           Cuisine secondCuisine = new Cuisine("Dog");
+
+           //Assert
+           Assert.Equal(firstCuisine, secondCuisine);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         public void Dispose()
         {
             // Restaurant.DeleteAll();
