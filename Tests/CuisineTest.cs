@@ -74,7 +74,19 @@ namespace RestaurantList
             Assert.Equal(testId, result);
         }
 
+        [Fact]
+        public void Find_FindsCuisineInDatabase_true()
+        {
+           //Arrange
+           Cuisine testCuisine = new Cuisine("Italian");
+           testCuisine.Save();
 
+           //Act
+           Cuisine foundCuisine = Cuisine.Find(testCuisine.GetId());
+
+           //Assert
+           Assert.Equal(testCuisine, foundCuisine);
+        }
 
 
 
