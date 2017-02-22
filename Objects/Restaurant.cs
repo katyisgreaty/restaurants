@@ -111,7 +111,7 @@ namespace RestaurantList
             SqlCommand cmd = new SqlCommand("SELECT * FROM restaurant WHERE name = @RestaurantName;", conn);
             SqlParameter restaurantNameParameter = new SqlParameter();
             restaurantNameParameter.ParameterName = "@RestaurantName";
-            restaurantNameParameter.Value = name.ToString();
+            restaurantNameParameter.Value = name;
             cmd.Parameters.Add(restaurantNameParameter);
             SqlDataReader rdr = cmd.ExecuteReader();
 
