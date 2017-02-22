@@ -32,8 +32,12 @@ Specs:
     * input: DELETE Mexican
     * output: American, Thai Fusion, Indian
 
-* The get all method will return true if the list of restaurants is empty in the beginning
-    * input: empty
+* The get all method will return an empty list if the list of restaurants is empty in the beginning
+    * input: nothing/null
+    * output: empty string
+
+* The equals method will return true if there are two restaurants that are the same
+    * input: Bill's, Bill's
     * output: true
 
 * The equals method will return true if there are two restaurants that are the same

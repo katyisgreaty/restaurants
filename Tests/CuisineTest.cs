@@ -132,7 +132,7 @@ namespace RestaurantList
 
         public void Dispose()
         {
-            // Restaurant.DeleteAll();
+            Restaurant.DeleteAll();
             Cuisine.DeleteAll();
         }
     }
