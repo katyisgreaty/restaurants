@@ -25,14 +25,24 @@ namespace RestaurantList
         public void Equals_ReturnsTrueForSameName_true()
         {
             //Arrange, Act
-           Cuisine firstCuisine = new Cuisine("Dog");
-           Cuisine secondCuisine = new Cuisine("Dog");
+           Cuisine firstCuisine = new Cuisine("Mexican");
+           Cuisine secondCuisine = new Cuisine("Mexican");
 
            //Assert
            Assert.Equal(firstCuisine, secondCuisine);
         }
 
+        [Fact]
+        public void Save_TestIfTypeSaved_true()
+        {
+            Cuisine testCuisine = new Cuisine("Asian");
+            testCuisine.Save();
 
+            List<Cuisine> result = Cuisine.GetAll();
+            List<Cuisine> testList = new List<Cuisine>{testCuisine};
+
+            Assert.Equal(testList, result);
+        }
 
 
 
