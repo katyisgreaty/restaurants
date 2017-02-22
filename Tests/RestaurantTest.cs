@@ -93,5 +93,30 @@ namespace RestaurantList
             Assert.Equal(testId, result);
         }
 
+        [Fact]
+        public void UpdateProperties_UpdatePropertiesInDatabase_true()
+        {
+            //Arrange
+            string name = "Darlene's";
+            string price = "$$$$";
+            string vibe = "country chic";
+
+            Restaurant testRestaurant = new Restaurant(name, price, vibe, 1);
+            testRestaurant.Save();
+            string newName = "Edna's";
+            string newPrice = "$$";
+            string newVibe = vibe;
+
+            //Act
+            testRestaurant.UpdateProperties(newName, newPrice, newVibe);
+            Restaurant result = Restaurant.GetAll()[0];
+
+            //Assert
+            Assert.Equal(testRestaurant, result);
+            Assert.Equal(newName, result.GetName());
+        }
+
+
+
     }
 }

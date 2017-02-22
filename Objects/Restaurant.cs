@@ -22,31 +22,31 @@ namespace RestaurantList
         }
 
         public int GetId()
-       {
-           return _id;
-       }
+        {
+            return _id;
+        }
 
-       public string GetName()
-       {
-           return _name;
-       }
+        public string GetName()
+        {
+            return _name;
+        }
 
-       public string GetPrice()
-       {
-           return _price;
-       }
+        public string GetPrice()
+        {
+            return _price;
+        }
 
-       public string GetVibe()
-       {
-           return _vibe;
-       }
+        public string GetVibe()
+        {
+            return _vibe;
+        }
 
-       public int GetCuisineId()
-       {
-           return _cuisineId;
-       }
+        public int GetCuisineId()
+        {
+            return _cuisineId;
+        }
 
-       public override bool Equals(System.Object otherRestaurant)
+        public override bool Equals(System.Object otherRestaurant)
         {
             if (!(otherRestaurant is Restaurant))
             {
@@ -64,82 +64,128 @@ namespace RestaurantList
             }
         }
 
-       public static List<Restaurant> GetAll()
-       {
-           List<Restaurant> AllRestaurants = new List<Restaurant>{};
+        public static List<Restaurant> GetAll()
+        {
+            List<Restaurant> AllRestaurants = new List<Restaurant>{};
 
-           SqlConnection conn = DB.Connection();
-           conn.Open();
+            SqlConnection conn = DB.Connection();
+            conn.Open();
 
-           SqlCommand cmd = new SqlCommand("SELECT * FROM restaurant;", conn);
-           SqlDataReader rdr = cmd.ExecuteReader();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM restaurant;", conn);
+            SqlDataReader rdr = cmd.ExecuteReader();
 
-           while(rdr.Read())
-           {
-               int restaurantId = rdr.GetInt32(0);
-               string restaurantName = rdr.GetString(1);
-               string restaurantPrice = rdr.GetString(2);
-               string restaurantVibe = rdr.GetString(3);
-               int restaurantCuisineId = rdr.GetInt32(4);
-               Restaurant newRestaurant = new Restaurant(restaurantName, restaurantPrice, restaurantVibe, restaurantCuisineId, restaurantId);
-               AllRestaurants.Add(newRestaurant);
-           }
-           if (rdr != null)
-           {
-               rdr.Close();
-           }
-           if (conn != null)
-           {
-               conn.Close();
-           }
-           return AllRestaurants;
-       }
+            while(rdr.Read())
+            {
+                int restaurantId = rdr.GetInt32(0);
+                string restaurantName = rdr.GetString(1);
+                string restaurantPrice = rdr.GetString(2);
+                string restaurantVibe = rdr.GetString(3);
+                int restaurantCuisineId = rdr.GetInt32(4);
+                Restaurant newRestaurant = new Restaurant(restaurantName, restaurantPrice, restaurantVibe, restaurantCuisineId, restaurantId);
+                AllRestaurants.Add(newRestaurant);
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return AllRestaurants;
+        }
 
-       public void Save()
-       {
-           SqlConnection conn = DB.Connection();
-           conn.Open();
+        public void Save()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
 
-           SqlCommand cmd = new SqlCommand("INSERT INTO restaurant (name, price, vibe, cuisine_id) OUTPUT INSERTED.id VALUES (@RestaurantName, @RestaurantPrice, @RestaurantVibe, @RestaurantCuisineId);", conn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO restaurant (name, price, vibe, cuisine_id) OUTPUT INSERTED.id VALUES (@RestaurantName, @RestaurantPrice, @RestaurantVibe, @RestaurantCuisineId);", conn);
 
-           SqlParameter nameParameter = new SqlParameter("@RestaurantName", this.GetName());
-           // nameParameter.ParameterName = "@RestaurantName";
-           // nameParameter.Value = this.GetName();
+            SqlParameter nameParameter = new SqlParameter("@RestaurantName", this.GetName());
+            // nameParameter.ParameterName = "@RestaurantName";
+            // nameParameter.Value = this.GetName();
 
-           SqlParameter priceParameter = new SqlParameter();
-           priceParameter.ParameterName = "@RestaurantPrice";
-           priceParameter.Value = this.GetPrice();
+            SqlParameter priceParameter = new SqlParameter();
+            priceParameter.ParameterName = "@RestaurantPrice";
+            priceParameter.Value = this.GetPrice();
 
-           SqlParameter vibeParameter = new SqlParameter();
-           vibeParameter.ParameterName = "@RestaurantVibe";
-           vibeParameter.Value = this.GetVibe();
+            SqlParameter vibeParameter = new SqlParameter();
+            vibeParameter.ParameterName = "@RestaurantVibe";
+            vibeParameter.Value = this.GetVibe();
 
-           SqlParameter cuisineIdParameter = new SqlParameter();
-           cuisineIdParameter.ParameterName = "@RestaurantCuisineId";
-           cuisineIdParameter.Value = this.GetCuisineId();
+            SqlParameter cuisineIdParameter = new SqlParameter();
+            cuisineIdParameter.ParameterName = "@RestaurantCuisineId";
+            cuisineIdParameter.Value = this.GetCuisineId();
 
-           cmd.Parameters.Add(nameParameter);
-           cmd.Parameters.Add(priceParameter);
-           cmd.Parameters.Add(vibeParameter);
-           cmd.Parameters.Add(cuisineIdParameter);
+            cmd.Parameters.Add(nameParameter);
+            cmd.Parameters.Add(priceParameter);
+            cmd.Parameters.Add(vibeParameter);
+            cmd.Parameters.Add(cuisineIdParameter);
 
-           SqlDataReader rdr = cmd.ExecuteReader();
+            SqlDataReader rdr = cmd.ExecuteReader();
 
-           while(rdr.Read())
-           {
-               this._id = rdr.GetInt32(0);
-           }
-           if (rdr != null)
-           {
-               rdr.Close();
-           }
-           if (conn != null)
-           {
-               conn.Close();
-           }
-       }
+            while(rdr.Read())
+            {
+                this._id = rdr.GetInt32(0);
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
 
-       public static void DeleteAll()
+        public void UpdateProperties(string newName, string newPrice, string newVibe)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE restaurant SET name = @NewName, price = @NewPrice, vibe = @NewVibe OUTPUT INSERTED.* WHERE id = @RestaurantId;", conn);
+
+            SqlParameter newNameParameter = new SqlParameter();
+            newNameParameter.ParameterName = "@NewName";
+            newNameParameter.Value = newName;
+            cmd.Parameters.Add(newNameParameter);
+
+            SqlParameter newPriceParameter = new SqlParameter();
+            newPriceParameter.ParameterName = "@NewPrice";
+            newPriceParameter.Value = newPrice;
+            cmd.Parameters.Add(newPriceParameter);
+
+            SqlParameter newVibeParameter = new SqlParameter();
+            newVibeParameter.ParameterName = "@NewVibe";
+            newVibeParameter.Value = newVibe;
+            cmd.Parameters.Add(newVibeParameter);
+
+            SqlParameter restaurantIdParameter = new SqlParameter();
+            restaurantIdParameter.ParameterName = "@RestaurantId";
+            restaurantIdParameter.Value = this.GetId();
+            cmd.Parameters.Add(restaurantIdParameter);
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._name = rdr.GetString(1);
+                this._price = rdr.GetString(2);
+                this._vibe = rdr.GetString(3);
+            }
+
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
+
+        public static void DeleteAll()
         {
             SqlConnection conn = DB.Connection();
             conn.Open();
