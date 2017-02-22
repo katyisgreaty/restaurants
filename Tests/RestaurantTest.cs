@@ -130,6 +130,33 @@ namespace RestaurantList
            Assert.Equal(testRestaurant, foundRestaurant);
         }
 
+        [Fact]
+        public void DeleteRestaurant_DeleteRestaurantInDatabase_true()
+        {
+            //Arrange
+            string name1 = "Bill's";
+            string price1 = "$$$";
+            string vibe1 = "hauntingly flavorful";
+            Restaurant testRestaurant1 = new Restaurant(name1, price1, vibe1, 1);
+            testRestaurant1.Save();
+
+            string name2 = "Bob's";
+            string price2 = "$$";
+            string vibe2 = "rustic";
+            Restaurant testRestaurant2 = new Restaurant(name2, price2, vibe2, 2);
+            testRestaurant2.Save();
+
+            //Act
+            testRestaurant1.Delete();
+            List<Restaurant> resultRestaurants = Restaurant.GetAll();
+            List<Restaurant> testRestaurantList = new List<Restaurant> {testRestaurant2};
+
+            //Assert
+            Assert.Equal(testRestaurantList, resultRestaurants);
+
+        }
+
+
 
 
     }
