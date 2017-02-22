@@ -75,5 +75,23 @@ namespace RestaurantList
             List<Restaurant> resultRestaurantList = Restaurant.GetAll();
             Assert.Equal(testRestaurantList, resultRestaurantList);
         }
+
+        [Fact]
+        public void GetId_GetsIdForRestaurant_true()
+        {
+            //Arrange
+            Restaurant testRestaurant = new Restaurant("Bob's", "$$$", "grim", 1);
+            testRestaurant.Save();
+
+            //Act
+            Restaurant savedRestaurant = Restaurant.GetAll()[0];
+
+            int result = savedRestaurant.GetId();
+            int testId = testRestaurant.GetId();
+
+            //Assert
+            Assert.Equal(testId, result);
+        }
+
     }
 }
