@@ -71,7 +71,7 @@ namespace RestaurantList
            SqlConnection conn = DB.Connection();
            conn.Open();
 
-           SqlCommand cmd = new SqlCommand("SELECT * FROM cuisine;", conn);
+           SqlCommand cmd = new SqlCommand("SELECT * FROM restaurant;", conn);
            SqlDataReader rdr = cmd.ExecuteReader();
 
            while(rdr.Read())
@@ -93,6 +93,50 @@ namespace RestaurantList
                conn.Close();
            }
            return AllRestaurants;
+       }
+
+       public void Save()
+       {
+           SqlConnection conn = DB.Connection();
+           conn.Open();
+
+           SqlCommand cmd = new SqlCommand("INSERT INTO restaurant (name, price, vibe, cuisine_id) OUTPUT INSERTED.id VALUES (@RestaurantName, @RestaurantPrice, @RestaurantVibe, @RestaurantCuisineId);", conn);
+
+           SqlParameter nameParameter = new SqlParameter("@RestaurantName", this.GetName());
+           // nameParameter.ParameterName = "@RestaurantName";
+           // nameParameter.Value = this.GetName();
+
+           SqlParameter priceParameter = new SqlParameter();
+           priceParameter.ParameterName = "@RestaurantPrice";
+           priceParameter.Value = this.GetPrice();
+
+           SqlParameter vibeParameter = new SqlParameter();
+           vibeParameter.ParameterName = "@RestaurantVibe";
+           vibeParameter.Value = this.GetVibe();
+
+           SqlParameter cuisineIdParameter = new SqlParameter();
+           cuisineIdParameter.ParameterName = "@RestaurantCuisineId";
+           cuisineIdParameter.Value = this.GetCuisineId();
+
+           cmd.Parameters.Add(nameParameter);
+           cmd.Parameters.Add(priceParameter);
+           cmd.Parameters.Add(vibeParameter);
+           cmd.Parameters.Add(cuisineIdParameter);
+
+           SqlDataReader rdr = cmd.ExecuteReader();
+
+           while(rdr.Read())
+           {
+               this._id = rdr.GetInt32(0);
+           }
+           if (rdr != null)
+           {
+               rdr.Close();
+           }
+           if (conn != null)
+           {
+               conn.Close();
+           }
        }
 
        public static void DeleteAll()

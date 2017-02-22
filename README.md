@@ -40,10 +40,6 @@ Specs:
     * input: Bill's, Bill's
     * output: true
 
-* The equals method will return true if there are two restaurants that are the same
-    * input: Bob's, Bob's
-    * output: true
-
 * The save and get all methods will return true if the restaurant was saved in the database
     * input: Bob's
     * output: true
