@@ -138,7 +138,7 @@ namespace RestaurantList
             return foundCuisine;
         }
 
-        public void Update(string newName)
+        public void UpdateName(string newName)
         {
             SqlConnection conn = DB.Connection();
             conn.Open();
@@ -149,7 +149,6 @@ namespace RestaurantList
             newNameParameter.ParameterName = "@NewName";
             newNameParameter.Value = newName;
             cmd.Parameters.Add(newNameParameter);
-
 
             SqlParameter cuisineIdParameter = new SqlParameter();
             cuisineIdParameter.ParameterName = "@CuisineId";
@@ -166,6 +165,26 @@ namespace RestaurantList
             {
             rdr.Close();
             }
+
+            if (conn != null)
+            {
+            conn.Close();
+            }
+        }
+
+        public void Delete()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM cuisine WHERE id = @CuisineId; DELETE FROM restaurant WHERE cuisine_id = @CuisineId;", conn);
+
+            SqlParameter cuisineIdParameter = new SqlParameter();
+            cuisineIdParameter.ParameterName = "@CuisineId";
+            cuisineIdParameter.Value = this.GetId();
+
+            cmd.Parameters.Add(cuisineIdParameter);
+            cmd.ExecuteNonQuery();
 
             if (conn != null)
             {

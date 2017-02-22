@@ -89,7 +89,7 @@ namespace RestaurantList
         }
 
         [Fact]
-        public void Update_UpdateNameInDatabase_true()
+        public void UpdateName_UpdateNameInDatabase_true()
         {
             //Arrange
             string name = "Italian";
@@ -98,12 +98,34 @@ namespace RestaurantList
             string newName = "Ethiopian";
 
             //Act
-            testCuisine.Update(newName);
+            testCuisine.UpdateName(newName);
 
             string result = testCuisine.GetName();
 
             //Assert
             Assert.Equal(newName, result);
+        }
+
+        [Fact]
+        public void DeleteCuisine_DeleteCuisineInDatabase_true()
+        {
+            //Arrange
+            string name1 = "Italian";
+            Cuisine testCuisine1 = new Cuisine(name1);
+            testCuisine1.Save();
+
+            string name2 = "Mexican";
+            Cuisine testCuisine2 = new Cuisine(name2);
+            testCuisine2.Save();
+
+            //Act
+            testCuisine1.Delete();
+            List<Cuisine> resultCuisines = Cuisine.GetAll();
+            List<Cuisine> testCuisineList = new List<Cuisine> {testCuisine2};
+
+            //Assert
+            Assert.Equal(testCuisineList, resultCuisines);
+
         }
 
 
