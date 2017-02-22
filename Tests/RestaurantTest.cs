@@ -27,5 +27,16 @@ namespace RestaurantList
         {
             Restaurant.DeleteAll();
         }
+
+        [Fact]
+        public void Equals_ReturnsTrueForSameName_true()
+        {
+            //Arrange, Act
+           Restaurant firstRestaurant = new Restaurant("Bob's","$", "fun", 1);
+           Restaurant secondRestaurant = new Restaurant("Bob's","$", "fun", 1);
+
+           //Assert
+           Assert.Equal(firstRestaurant, secondRestaurant);
+        }
     }
 }

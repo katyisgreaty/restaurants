@@ -46,6 +46,24 @@ namespace RestaurantList
            return _cuisineId;
        }
 
+       public override bool Equals(System.Object otherRestaurant)
+        {
+            if (!(otherRestaurant is Restaurant))
+            {
+                return false;
+            }
+            else
+            {
+                Restaurant newRestaurant = (Restaurant) otherRestaurant;
+                bool idEquality = (this.GetId() == newRestaurant.GetId());
+                bool nameEquality = (this.GetName() == newRestaurant.GetName());
+                bool priceEquality = this.GetPrice() == newRestaurant.GetPrice();
+                bool vibeEquality = (this.GetVibe() == newRestaurant.GetVibe());
+                bool cuisineIdEquality = this.GetCuisineId() == newRestaurant.GetCuisineId();
+                return (idEquality && nameEquality && priceEquality && vibeEquality && cuisineIdEquality);
+            }
+        }
+
        public static List<Restaurant> GetAll()
        {
            List<Restaurant> AllRestaurants = new List<Restaurant>{};
