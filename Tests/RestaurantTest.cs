@@ -117,7 +117,7 @@ namespace RestaurantList
         }
 
         [Fact]
-        public void Find_FindsRestaurantInDatabase_true()
+        public void Find_FindsRestaurantInDatabaseById_true()
         {
            //Arrange
            Restaurant testRestaurant = new Restaurant("Bob's", "$$$", "grim", 1);
@@ -125,6 +125,20 @@ namespace RestaurantList
 
            //Act
            Restaurant foundRestaurant = Restaurant.Find(testRestaurant.GetId());
+
+           //Assert
+           Assert.Equal(testRestaurant, foundRestaurant);
+        }
+
+        [Fact]
+        public void Find_FindsRestaurantInDatabaseByName_true()
+        {
+           //Arrange
+           Restaurant testRestaurant = new Restaurant("Bob's", "$$$", "grim", 1);
+           testRestaurant.Save();
+
+           //Act
+           Restaurant foundRestaurant = Restaurant.FindByName(testRestaurant.GetName());
 
            //Assert
            Assert.Equal(testRestaurant, foundRestaurant);
