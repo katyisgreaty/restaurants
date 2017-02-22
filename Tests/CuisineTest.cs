@@ -89,6 +89,21 @@ namespace RestaurantList
         }
 
         [Fact]
+        public void Find_FindsCuisineInDatabaseByName_true()
+        {
+           //Arrange
+           Cuisine testCuisine = new Cuisine("Mexican");
+           testCuisine.Save();
+
+           //Act
+           Cuisine foundCuisine = Cuisine.FindByName(testCuisine.GetName());
+
+           //Assert
+           Assert.Equal(testCuisine, foundCuisine);
+        }
+
+
+        [Fact]
         public void UpdateName_UpdateNameInDatabase_true()
         {
             //Arrange

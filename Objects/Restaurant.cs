@@ -142,6 +142,7 @@ namespace RestaurantList
             return foundRestaurant;
         }
 
+
         public static List<Restaurant> GetAll()
         {
             List<Restaurant> AllRestaurants = new List<Restaurant>{};
