@@ -44,6 +44,18 @@ namespace RestaurantList
             Assert.Equal(testList, result);
         }
 
+        [Fact]
+        public void GetAll_ReturnListOfAllCuisines_true()
+        {
+            Cuisine firstCuisine = new Cuisine("Mexican");
+            Cuisine secondCuisine = new Cuisine("Asian");
+            firstCuisine.Save();
+            secondCuisine.Save();
+
+            List<Cuisine> testCuisineList = new List<Cuisine> {firstCuisine, secondCuisine};
+            List<Cuisine> resultCuisineList = Cuisine.GetAll();
+            Assert.Equal(testCuisineList, resultCuisineList);
+        }
 
 
 
