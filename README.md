@@ -20,6 +20,10 @@ Specs:
     * input: Mexican, American, Thai, Indian
     * output: Mexican, American, Thai, Indian
 
+* The find method will return the cuisine in the database.
+    * input: Mexican
+    * output: Mexican
+
 * When the user updates the name of a cuisine, the update method will return the updated name
     * input: Thai Fusion replacing Thai
     * output: Thai Fusion

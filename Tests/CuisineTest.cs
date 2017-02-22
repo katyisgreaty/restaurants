@@ -88,7 +88,23 @@ namespace RestaurantList
            Assert.Equal(testCuisine, foundCuisine);
         }
 
+        [Fact]
+        public void Update_UpdateNameInDatabase_true()
+        {
+            //Arrange
+            string name = "Italian";
+            Cuisine testCuisine = new Cuisine(name);
+            testCuisine.Save();
+            string newName = "Ethiopian";
 
+            //Act
+            testCuisine.Update(newName);
+
+            string result = testCuisine.GetName();
+
+            //Assert
+            Assert.Equal(newName, result);
+        }
 
 
 
