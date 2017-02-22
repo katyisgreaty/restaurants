@@ -116,6 +116,20 @@ namespace RestaurantList
             Assert.Equal(newName, result.GetName());
         }
 
+        [Fact]
+        public void Find_FindsRestaurantInDatabase_true()
+        {
+           //Arrange
+           Restaurant testRestaurant = new Restaurant("Bob's", "$$$", "grim", 1);
+           testRestaurant.Save();
+
+           //Act
+           Restaurant foundRestaurant = Restaurant.Find(testRestaurant.GetId());
+
+           //Assert
+           Assert.Equal(testRestaurant, foundRestaurant);
+        }
+
 
 
     }

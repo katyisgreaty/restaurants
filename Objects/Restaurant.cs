@@ -64,6 +64,45 @@ namespace RestaurantList
             }
         }
 
+        public static Restaurant Find(int id)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM restaurant WHERE id = @RestaurantId;", conn);
+            SqlParameter restaurantIdParameter = new SqlParameter();
+            restaurantIdParameter.ParameterName = "@RestaurantId";
+            restaurantIdParameter.Value = id.ToString();
+            cmd.Parameters.Add(restaurantIdParameter);
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            int foundRestaurantId = 0;
+            string foundRestaurantName = null;
+            string foundRestaurantPrice = null;
+            string foundRestaurantVibe = null;
+            int foundRestaurantCuisineId = 0;
+
+            while(rdr.Read())
+            {
+                foundRestaurantId = rdr.GetInt32(0);
+                foundRestaurantName = rdr.GetString(1);
+                foundRestaurantPrice = rdr.GetString(2);
+                foundRestaurantVibe = rdr.GetString(3);
+                foundRestaurantCuisineId = rdr.GetInt32(4);
+            }
+            Restaurant foundRestaurant = new Restaurant(foundRestaurantName, foundRestaurantPrice, foundRestaurantVibe, foundRestaurantCuisineId, foundRestaurantId);
+
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return foundRestaurant;
+        }
+
         public static List<Restaurant> GetAll()
         {
             List<Restaurant> AllRestaurants = new List<Restaurant>{};
