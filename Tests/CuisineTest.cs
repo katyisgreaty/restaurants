@@ -33,7 +33,7 @@ namespace RestaurantList
         }
 
         [Fact]
-        public void Save_TestIfTypeSaved_true()
+        public void Save_TestIfCuisineSaved_true()
         {
             Cuisine testCuisine = new Cuisine("Asian");
             testCuisine.Save();
@@ -57,7 +57,22 @@ namespace RestaurantList
             Assert.Equal(testCuisineList, resultCuisineList);
         }
 
+        [Fact]
+        public void GetId_GetsIdForCuisine_true()
+        {
+            //Arrange
+            Cuisine testCuisine = new Cuisine("Asian");
+            testCuisine.Save();
 
+            //Act
+            Cuisine savedCuisine = Cuisine.GetAll()[0];
+
+            int result = savedCuisine.GetId();
+            int testId = testCuisine.GetId();
+
+            //Assert
+            Assert.Equal(testId, result);
+        }
 
 
 
