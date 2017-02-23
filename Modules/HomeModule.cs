@@ -104,8 +104,10 @@ namespace RestaurantList
             };
 
             Post["/cuisine/search/results"] = _ => {
+                List<Cuisine> FoundList = new List<Cuisine>{};
                 Cuisine foundCuisine = Cuisine.FindByName(Request.Form["cuisine-search"]);
-                return View["search_cuisine_results.cshtml", foundCuisine];
+                FoundList.Add(foundCuisine);
+                return View["search_cuisine_results.cshtml", FoundList];
             };
         }
     }
