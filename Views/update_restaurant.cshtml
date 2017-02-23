@@ -2,7 +2,7 @@
     Layout="Shared/_Layout.cshtml";
 }
 <h1 class="restaurant-name">Update information for @Model.GetName()</h1>
-<form action="/restaurants/updated" method="post">
+<form action="/restaurant/edit/@Model.GetId()" method="post">
     <input type="hidden" name="_method" value="PATCH">
     <p>The old name for this restaurant was: @Model.GetName()</p>
     <label for="restaurant-name">If you'd like to change the name, enter the new name here:</label>
@@ -13,16 +13,10 @@
     <p>The old vibe for this restaurant was: @Model.GetVibe()</p>
     <label for="restaurant-vibe">If you'd like to change the vibe, enter the new vibe here:</label>
     <input id="restaurant-vibe" name="restaurant-vibe" type="text">
-    <label for="restaurant-cuisine-type">If you'd like to change the cuisine your restaurant is listed under, choose the new cuisine here:</label>
-    <select name="cuisine-id">
-        @foreach (var cuisine in Model)
-        {
-            <option value="@cuisine.GetId()">@cuisine.GetName()</option>
-        }
-    </select>
+
     <button type="submit">Update this restaurant</button>
 </form>
-</form>
+
 
 
 

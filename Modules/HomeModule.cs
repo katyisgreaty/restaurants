@@ -70,7 +70,7 @@ namespace RestaurantList
             Patch["restaurant/edit/{id}"] = parameters => {
                 Restaurant SelectedRestaurant = Restaurant.Find(parameters.id);
                 SelectedRestaurant.UpdateProperties(Request.Form["restaurant-name"], Request.Form["restaurant-price"], Request.Form["restaurant-vibe"]);
-                return View["restaurant_updated.cshtml"];
+                return View["restaurant_updated.cshtml", SelectedRestaurant];
             };
 
             Get["cuisine/edit/{id}"] = parameters => {
@@ -94,6 +94,16 @@ namespace RestaurantList
                 Cuisine SelectedCuisine = Cuisine.Find(parameters.id);
                 SelectedCuisine.Delete();
                 return View["cuisine_deleted.cshtml"];
+            };
+
+            Post["/restaurant/search/results"] = _ => {
+                Restaurant foundRestaurant = Restaurant.FindByName(Request.Form["restaurant-search"]);
+                return View["search_restaurant_results.cshtml", foundRestaurant];
+            };
+
+            Post["/cuisine/search/results"] = _ => {
+                Cuisine foundCuisine = Cuisine.FindByName(Request.Form["cuisine-search"]);
+                return View["search_cuisine_results.cshtml", foundCuisine];
             };
         }
     }

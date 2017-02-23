@@ -13,9 +13,16 @@ else
   <ol>
     @foreach (var restaurant in @Model["restaurants"])
     {
-      <a href="/restaurant/@restaurant.GetId()"><li>@restaurant.GetName()</li></a>
+      <a href='/restaurant/@restaurant.GetId()'><li>@restaurant.GetName()</li></a>
     }
   </ol>
 }
+
+<form action='/cuisine/delete/@Model["cuisine"].GetId()' method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit">Delete this cuisine</button>
+</form>
+
+<p><a href='/cuisine/edit/@Model["cuisine"].GetId()'class="links">Update this cuisine's information</a></p>
 <p><a href="/restaurants/new">Add a new restaurant</a></p>
 <p><a href="/">Return to Main Page</a></p>

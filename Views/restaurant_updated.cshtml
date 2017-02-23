@@ -4,11 +4,14 @@
 
 <h1>Your updated restaurant information:</h1>
 <h3 class="restaurant-name">@Model.GetName()</h3>
-  <p class="restauranttext">@Model.GetStreet()</p>
-  <p class="restauranttext">@Model.GetCity(), @Model.GetState() @Model.GetZip()</p>
+  <p class="restauranttext">@Model.GetPrice()</p>
+  <p class="restauranttext">@Model.GetVibe()</p>
 
-  <p><a href="/restaurant/deleted" class="links">Delete this restaurant</a></p>
-  <p><a href="/restaurant/update" class="links">Update this restaurant's information (again?!)</a></p>
+  <form action="/restaurant/delete/@Model.GetId()" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button type="submit">Delete this restaurant</button>
+  </form>
+  <p><a href="/restaurant/edit/@Model.GetId()" class="links">Update this restaurant's information (again?!)</a></p>
   <p id="spacebutton"><a href="/restaurants/new" class="links">Add another restaurant</a></p>
   <p><a href="/" class="links">Go back home</a></p>
 </div>
