@@ -33,7 +33,7 @@ namespace RestaurantList
             };
 
             Get["/restaurants/new"] = _ => {
-                List<Cuisines> AllCuisines = Cuisine.GetAll();
+                List<Cuisine> AllCuisines = Cuisine.GetAll();
                 return View["cuisines_form.cshtml", AllCuisines];
             };
 
@@ -55,7 +55,7 @@ namespace RestaurantList
                 model.Add("cuisine", SelectedCuisine);
                 model.Add("restaurants", CuisineRestaurants);
                 return View["cuisine.cshtml", model];
-              };
+            };
         }
     }
 }

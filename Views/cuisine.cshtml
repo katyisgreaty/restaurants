@@ -1,0 +1,21 @@
+@{
+    Layout="Shared/_Layout.cshtml";
+}
+
+<h2>Here are all the cuisines in this type:</h2>
+
+@if (@Model["cuisines"].Count == 0)
+{
+  <p>No cuisines have been added yet!</p>
+}
+else
+{
+  <ol>
+    @foreach (var cuisine in @Model["cuisines"])
+    {
+      <li>@cuisine.GetName()</li>
+    }
+  </ol>
+}
+<p><a href="/cuisines/new">Add a new cuisine</a></p>
+<p><a href="/">Return to Main Page</a></p>

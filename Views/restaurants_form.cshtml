@@ -1,0 +1,21 @@
+@{
+    Layout="Shared/_Layout.cshtml";
+}
+<h1>Add a new restaurant</h1>
+<form action="/restaurants/new" method="post">
+  <label for="restaurant-name">Restaurant name:</label>
+  <input id="restaurant-name" name="restaurant-name" type="text">
+  <label for="restaurant-price">Restaurant price:</label>
+  <input id="restaurant-price" name="restaurant-price" type="text">
+  <label for="restaurant-vibe">Restaurant vibe:</label>
+  <input id="restaurant-vibe" name="restaurant-vibe" type="text">
+  <select name="type-id">
+    @foreach (var type in Model)
+    {
+      <option value="@cuisine.GetId()">@cuisine.GetName()</option>
+    }
+  </select>
+  <button type="submit">Add new restaurant</button>
+</form>
+<p><a href="/">Back home</a></p>
+<p><a href="/restaurants">View all restaurants</a></p>
