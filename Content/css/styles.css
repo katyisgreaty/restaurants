@@ -1,0 +1,21 @@
+body {
+    background-image: url("http://www.walldevil.com/wallpapers/a59/moon-bone-dog-astronaut.jpg");
+    color: red;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.jumbotron {
+    /*background-image: url("http://www.japantimes.co.jp/wp-content/uploads/2013/01/fl20120429x1a-870x396.jpg");*/
+    background-color: #0078C4;
+    height: 230px;
+    background-position: top;
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+img {
+    height: 40px;
+}
