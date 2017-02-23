@@ -56,6 +56,33 @@ namespace RestaurantList
                 model.Add("restaurants", CuisineRestaurants);
                 return View["cuisine.cshtml", model];
             };
+
+            //   Get["/restaurants/{id}"] = parameters => {
+            //    Restaurant restaurant = Restaurant.Find(parameters.id);
+            //    return View["restaurant.cshtml", address];
+            //  };
+
+            Get["restaurant/edit/{id}"] = parameters => {
+                Restaurant SelectedRestaurant = Restaurant.Find(parameters.id);
+                return View["update_restaurant.cshtml", SelectedRestaurant];
+            };
+
+            Patch["restaurant/edit/{id}"] = parameters => {
+                Restaurant SelectedRestaurant = Restaurant.Find(parameters.id);
+                SelectedRestaurant.UpdateProperties(Request.Form["restaurant-name"], Request.Form["restaurant-price"], Request.Form["restaurant-vibe"]);
+                return View["restaurant_updated.cshtml"];
+            };
+
+            Get["cuisine/edit/{id}"] = parameters => {
+                Cuisine SelectedCuisine = Cuisine.Find(parameters.id);
+                return View["update_cuisine.cshtml", SelectedCuisine];
+            };
+
+            Patch["cuisine/edit/{id}"] = parameters => {
+                Cuisine SelectedCuisine = Cuisine.Find(parameters.id);
+                SelectedCuisine.UpdateName(Request.Form["cuisine-name"]);
+                return View["cuisine_updated.cshtml"];
+            };
         }
     }
 }

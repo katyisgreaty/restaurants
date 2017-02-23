@@ -11,7 +11,7 @@ else
   <ul>
     @foreach (var restaurant in Model)
     {
-      <li>@restaurant.GetName() @restaurant.GetPrice() @restaurant.GetVibe()</li>
+       <a href="/restaurant/@restaurant.GetId()"><li>@restaurant.GetName()</li></a>
     }
   </ul>
   <form action="/restaurants/delete" method="post">

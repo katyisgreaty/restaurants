@@ -1,0 +1,12 @@
+@{
+    Layout="Shared/_Layout.cshtml";
+}
+
+<h1 class="cuisine-name">Update information for @Model.GetName()</h1>
+<form action="/cuisines/updated" method="post">
+  <p>The old name for this cuisine was: @Model.GetName()</p>
+  <label for="cuisine-name">If you'd like to change the name, enter the new name here:</label>
+  <input id="cuisine-name" name="cuisine-name" type="text">
+
+
+<p><a href="/" class="links">Go back home</a></p>

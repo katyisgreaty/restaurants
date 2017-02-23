@@ -1,12 +1,14 @@
 @{
     Layout="Shared/_Layout.cshtml";
 }
-<h1 class="restaurant-name">@Model.GetName()</h1>
+
+<h1>Your updated restaurant information:</h1>
+<h3 class="restaurant-name">@Model.GetName()</h3>
   <p class="restauranttext">@Model.GetStreet()</p>
   <p class="restauranttext">@Model.GetCity(), @Model.GetState() @Model.GetZip()</p>
 
   <p><a href="/restaurant/deleted" class="links">Delete this restaurant</a></p>
-  <p><a href="/restaurant/edit/@restaurant.GetId()" class="links">Update this restaurant's information</a></p>
+  <p><a href="/restaurant/update" class="links">Update this restaurant's information (again?!)</a></p>
   <p id="spacebutton"><a href="/restaurants/new" class="links">Add another restaurant</a></p>
   <p><a href="/" class="links">Go back home</a></p>
 </div>

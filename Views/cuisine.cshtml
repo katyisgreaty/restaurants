@@ -1,19 +1,19 @@
 @{
     Layout="Shared/_Layout.cshtml";
 }
+@* <h1>@cuisine.GetName()</h1> *@
+<h2>Here are all the restaurants in this cuisine:</h2>
 
-<h2>Here are all the cuisines in this type:</h2>
-
-@if (@Model["cuisines"].Count == 0)
+@if (@Model["restaurants"].Count == 0)
 {
-  <p>No cuisines have been added yet!</p>
+  <p>No restaurants have been added yet!</p>
 }
 else
 {
   <ol>
-    @foreach (var cuisine in @Model["cuisines"])
+    @foreach (var restaurant in @Model["restaurants"])
     {
-      <li>@cuisine.GetName()</li>
+      <a href="/restaurant/@restaurant.GetId()"><li>@restaurant.GetName()</li></a>
     }
   </ol>
 }
