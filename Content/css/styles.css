@@ -1,21 +1,77 @@
+@font-face {
+  font-family: outerspace;
+  src: url(fonts/SFOuterLimits.ttf);
+}
+
 body {
     background-image: url("http://www.walldevil.com/wallpapers/a59/moon-bone-dog-astronaut.jpg");
-    color: red;
     background-attachment: fixed;
+    color: #F2F2F2;
     background-size: cover;
     background-repeat: no-repeat;
+    font-family: 'Raleway', sans-serif;
+    font-size: 22px;
 }
 
 .jumbotron {
     /*background-image: url("http://www.japantimes.co.jp/wp-content/uploads/2013/01/fl20120429x1a-870x396.jpg");*/
     background-color: #0078C4;
-    height: 230px;
+    color: white;
+    height: 320px;
     background-position: top;
     background-attachment: fixed;
     background-size: contain;
     background-repeat: no-repeat;
+    font-size: 50px;
+    text-align: center;
+    font-family: outerspace;
 }
 
 img {
-    height: 40px;
+    height: 150px;
+}
+
+a{
+    font-size: 40px;
+    text-align: center;
+}
+
+.clearish {
+    background-color: transparent;
+    border-style: solid;
+    border-color: white white;
+}
+
+h4 {
+    font-size: 40px;
+    border-style: solid;
+    border-color: white white;
+    border-radius: 10px;
+    width: 60%;
+}
+
+.upperspace {
+    margin-top: 150px;
+}
+
+.linkspaceleft {
+    margin-left: 30px;
+}
+
+p {
+    text-align: center;
+}
+
+.title {
+    font-size: 100px;
+    color: #F6EE53;
+}
+
+.eat {
+    color: #F47423;
+    font-size: 70px;
+}
+
+li {
+    list-style-type: none;
 }

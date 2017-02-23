@@ -2,18 +2,22 @@
     Layout="Shared/_Layout.cshtml";
 }
 
+<p>Find your new favorite restaurant!</p>
 
-<h4><a href="/cuisines">View Cuisines</a></h4>
-<h4><a href="/restaurants">View All Restaurants</a></h4>
+<a href="/cuisines" class="linkspaceleft"><h4>View Cuisines</h4></a>
+<a href="/restaurants" class="linkspaceleft"><h4>View All Restaurants</h4></a>
+
+<div class="row upperspace">
 
 <form action="/restaurant/search/results" method="post">
   <label for="restaurant-search">Search for a restaurant:</label>
   <input id="restaurant-search" name="restaurant-search" type="text">
-  <button type="submit">Search for restaurant</button>
+  <button type="submit" class="btn clearish">Search for restaurant</button>
 </form>
 
 <form action="/cuisine/search/results" method="post">
   <label for="cuisine-search">Search for a cuisine:</label>
   <input id="cuisine-search" name="cuisine-search" type="text">
-  <button type="submit">Search for cuisine</button>
+  <button type="submit" class="btn clearish">Search for cuisine</button>
 </form>
+</div>
