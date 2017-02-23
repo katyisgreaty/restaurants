@@ -46,6 +46,8 @@ namespace RestaurantList
             return _cuisineId;
         }
 
+
+
         public override bool Equals(System.Object otherRestaurant)
         {
             if (!(otherRestaurant is Restaurant))
