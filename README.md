@@ -1,3 +1,32 @@
+# CDList
+
+
+#### _CD List web app, 2.23.17_
+
+#### By _**Katy Daviscourt and Tammy Dang**_
+
+## Description
+
+_Use database, xunit testing and c# to make webpage listing restaurants in different cuisines_
+
+## Setup/Installation Requirements
+
+* Requires DNU, DNX, and Mono
+* Clone to local machine
+* Use command "dnu restore" in command prompt/shell
+* Use command "dnx kestrel" to start server
+* Navigate to http://localhost:5004 in web browser of choice
+
+## Support and contact details
+
+_For questions contact Katy at katy.daviscourt@gmail.com_
+
+## Technologies Used
+
+_C#, Nancy_
+
+
+
 Specs:
 
 * The get all method will return an empty list if the list of cuisines is empty in the beginning
@@ -67,3 +96,10 @@ Specs:
 * The get all method can search restaurants by cuisine
     * input: Mexican
     * output: Beth's, Aqua Verde
+    
+    
+### License
+
+*Under MIT License*
+
+Copyright (c) 2017 **_Katy Daviscourt and Tammy Dang_**
